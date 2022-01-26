@@ -1,6 +1,8 @@
 import tkinter as tk
+from tkinter import messagebox
+import pandas
+import random
 
-LIGHT_BLUE = "#add8e6"
 
 window = tk.Tk()
 window.config(width=800, height=526, pady=50, padx=50)
@@ -24,6 +26,16 @@ card.grid(column=0, row=0, columnspan=2)
 # card_img = tk.PhotoImage(file="../images/card_back.png")
 # card.create_text(400, 150, text="English", fill="black", font=("Arial", 40, "italic"))
 # card.create_text(400, 263, text="some word", fill="black", font=("Arial", 60, "bold"))
+
+try:
+    csv_file = pandas.read_csv("french_words.csv")
+except FileNotFoundError:
+    messagebox.showinfo(title="Oops", message="There is no words to play!")
+else:
+    csv_data = csv_file.to_dict()
+    eng_words = csv_data["English"]
+    fr_words = csv_data["French"]
+    word_no = random.randint(0, len(eng_words))
 
 
 window.mainloop()
