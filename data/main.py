@@ -35,7 +35,15 @@ else:
     csv_data = csv_file.to_dict()
     eng_words = csv_data["English"]
     fr_words = csv_data["French"]
+
+
+def pick_word():
     word_no = random.randint(0, len(eng_words))
+    fr_word = fr_words[word_no]
+    eng_word = eng_words[word_no]
+    return fr_word, eng_word
+
+
 
 
 window.mainloop()
