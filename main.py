@@ -8,9 +8,9 @@ current_card = {}
 csv_data = {}
 
 try:
-    csv_file = pandas.read_csv("words_to_learn.csv")
+    csv_file = pandas.read_csv("data/words_to_learn.csv")
 except FileNotFoundError:
-    original_data = pandas.read_csv("french_words.csv")
+    original_data = pandas.read_csv("data/french_words.csv")
     csv_data = original_data.to_dict(orient="records")
 else:
     csv_data = csv_file.to_dict(orient="records")
@@ -47,19 +47,19 @@ window.title("Flashy")
 
 flip_timer = window.after(3000, flip_card)
 
-ok_button_img = tk.PhotoImage(file="../images/right.png")
+ok_button_img = tk.PhotoImage(file="images/right.png")
 ok_button = tk.Button(image=ok_button_img, highlightthickness=0, command=is_known)
 ok_button.config(bg=BG_COLOR)
 ok_button.grid(column=1, row=1)
 
-wrong_button_img = tk.PhotoImage(file="../images/wrong.png")
+wrong_button_img = tk.PhotoImage(file="images/wrong.png")
 wrong_button = tk.Button(image=wrong_button_img, highlightthickness=0, command=next_card)
 wrong_button.config(bg=BG_COLOR)
 wrong_button.grid(column=0, row=1)
 
 card = tk.Canvas(width=800, height=500, highlightthickness=0)
-card_front_img = tk.PhotoImage(file="../images/card_front.png")
-card_back_img = tk.PhotoImage(file="../images/card_back.png")
+card_front_img = tk.PhotoImage(file="images/card_front.png")
+card_back_img = tk.PhotoImage(file="images/card_back.png")
 card_img = card.create_image(400, 250, image=card_front_img)
 card.config(bg=BG_COLOR)
 language = card.create_text(400, 150, text="French", fill="black", font=("Arial", 40, "italic"))
